@@ -1,0 +1,9 @@
+CREATE TABLE `sai`.`questions` (
+  `quest_no` INT NOT NULL AUTO_INCREMENT,
+  `question_name` VARCHAR(45) NOT NULL,
+  `option1l` VARCHAR(45) NOT NULL,
+  `option2` VARCHAR(45) NOT NULL,
+  `option3` VARCHAR(45) NOT NULL,
+  `option4` VARCHAR(45) NOT NULL,
+  `crct_ans` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`quest_no`));
