@@ -9,33 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.nt.bean.StudentBean;
-import com.nt.dao.UpdateStudentDao;
+import com.nt.dao.DeleteStudentDao;
 
-@WebServlet("/UpdateStudenturl")
-public class UpdateStudentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
+@WebServlet("/DeleteStudenturl")
+public class DeleteStudentServlet extends HttpServlet {
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		UpdateStudentDao dao=new UpdateStudentDao();
-		StudentBean bean=new StudentBean();
-		int result=0;
-		bean.setStudent_id(Integer.parseInt(req.getParameter("stu_id")));
-		bean.setStudentName(req.getParameter("sname"));
-		bean.setAddres(req.getParameter("addrs"));
+		DeleteStudentDao dao=new DeleteStudentDao();
+		int stu_id=Integer.parseInt(req.getParameter("id"));
 		try {
-			result=dao.UpdateStudents(bean);
-			System.out.println(result);
+			int result=dao.deleteStudent(stu_id);
 			if(result==1) {
 				RequestDispatcher rd=req.getRequestDispatcher("/StuDetails");
 			rd.forward(req, res);
 			}
 			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
+		
+		
 	}
 
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

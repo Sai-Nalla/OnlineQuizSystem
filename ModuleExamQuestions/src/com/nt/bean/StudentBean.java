@@ -1,6 +1,13 @@
 package com.nt.bean;
 
 public class StudentBean {
+	private int Student_id;
+	public int getStudent_id() {
+		return Student_id;
+	}
+	public void setStudent_id(int student_id) {
+		Student_id = student_id;
+	}
 	private String StudentName;
 	private String Addres;
 	private int MobileNo;

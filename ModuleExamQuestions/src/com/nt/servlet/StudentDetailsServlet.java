@@ -27,7 +27,7 @@ public class StudentDetailsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		req.setAttribute("DetailsList", StuList);
-		RequestDispatcher rd=req.getRequestDispatcher("/StudentDetails.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("/StudentDetals.jsp");
 		rd.forward(req, res);
 		
 			}

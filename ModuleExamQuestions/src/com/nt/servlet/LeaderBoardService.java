@@ -21,7 +21,8 @@ public class LeaderBoardService extends HttpServlet {
 		// TODO Auto-generated method stub
 			LeaderBoardDaoImpl leaderDao=new LeaderBoardDaoImpl();
 			List<LeaderBoadrBean> list;
-			list=leaderDao.getLeaderBoard();
+			int sub_id= Integer.parseInt(req.getParameter("id"));
+			list=leaderDao.getLeaderBoard(sub_id);
 			req.setAttribute("leader", list);
 			RequestDispatcher rd=req.getRequestDispatcher("/leader.jsp");
 			rd.forward(req, res);

@@ -17,22 +17,17 @@ public class AddStudentServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		PrintWriter pw=null;
-		  int MobileNo=0;
 		  StudentBean bean =new StudentBean();
 		  AddStudentDao dao=new AddStudentDao();
 		  bean.setStudentName(req.getParameter("sname"));
-		  bean.setBranch(req.getParameter("branchname"));
 		  bean.setAddres(req.getParameter("addrs"));
-		  bean.setMobileNo(Integer.parseInt(req.getParameter("Phoneno")));
-		  pw=res.getWriter();
-		  pw.print("Hello");
+		  bean.setStudent_id(Integer.parseInt(req.getParameter("student_id")));
 		  try {
 			System.out.println(dao.addStudents(bean));
+			res.sendRedirect("Admin.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		  
-		  pw.print("Hello");
 		
 
 			}

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nt.bean.SubjectBean;
 import com.nt.dao.GetSubjectDaoImpl;
+import com.nt.dao.getSubjectDao;
 
 /**
  * Servlet implementation class GetSubjectsServlet
@@ -22,11 +24,18 @@ public class GetSubjectsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GetSubjectDaoImpl subjectdao=new GetSubjectDaoImpl();
-		Map<Integer,String> subject;
-		subject=subjectdao.getSubjects();
-		HttpSession session=request.getSession(true);
-		session.setAttribute("subjects", subject);
+		
+		getSubjectDao dao=new getSubjectDao();
+		HttpSession ses=request.getSession(true);
+		try {
+			List<SubjectBean> list=dao.getSubjects();
+			System.out.println(list);
+			ses.setAttribute("subjects",list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		RequestDispatcher rd=request.getRequestDispatcher("/addQuestion.jsp");
 		rd.forward(request, response);		
 	}

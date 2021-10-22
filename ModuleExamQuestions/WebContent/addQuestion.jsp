@@ -1,7 +1,10 @@
-<%@ page import="java.util.*" language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page import="java.util.*,com.nt.bean.SubjectBean" language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%RequestDispatcher rd=request.getRequestDispatcher("/home.jsp");
+		rd.include(request, response);%>
     
-    <%Map<Integer,String> subject=(Map<Integer,String>)session.getAttribute("subjects");%>
+   <%List<SubjectBean> sublist=(List<SubjectBean>)session.getAttribute("subjects"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +17,8 @@
 <form action="addurl" method="post">
 <table  border="1",align="right">
 Choose Subject::<select  name="subject">
-<%for(Map.Entry<Integer,String> map:subject.entrySet()) {%>
- <option value="<%=map.getKey()%>"><%=map.getValue() %></option>
+<%for(SubjectBean bean:sublist) {%>
+ <option value="<%=bean.getSubject_id()%>"><%=bean.getSubject_name()%></option>
 <%} %>
 </select>
 <tr>Question</tr><br>

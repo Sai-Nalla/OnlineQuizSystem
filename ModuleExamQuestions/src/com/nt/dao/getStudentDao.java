@@ -8,30 +8,25 @@ import java.util.List;
 
 import com.nt.bean.StudentBean;
 
-public class StudentDetailsDao {
-	private static final String  SELECT_QUERY="SELECT * FROM STUDENT";
+public class getStudentDao {
+	private static final String  SELECT_QUERY="SELECT * FROM STUDENT where student_id=?";
 	private GetConnection GetCon;
-	public List<StudentBean> getStudents() throws Exception{
+	public StudentBean getStudents(int sid) throws Exception{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		List<StudentBean> Stulist=new ArrayList<StudentBean>();
+		StudentBean getbean=new StudentBean();
 		GetCon=new GetConnection();
 		con=GetCon.getPooledJdbcConnection();
 		ps=con.prepareStatement(SELECT_QUERY);
 		if(ps!=null) {
+			ps.setInt(1,sid);
 			rs=ps.executeQuery();		
-			
-		while(rs.next()) {
-			if(!(rs.getInt(1)==100)) {
-			StudentBean getbean=new StudentBean();
+				rs.next();
 			getbean.setStudent_id(rs.getInt(1));
 			getbean.setStudentName(rs.getString(2));
 			getbean.setAddres(rs.getString(3));
-			Stulist.add(getbean);
-			}
-		}	
 	}
-return Stulist;
+return getbean;
 }
 }

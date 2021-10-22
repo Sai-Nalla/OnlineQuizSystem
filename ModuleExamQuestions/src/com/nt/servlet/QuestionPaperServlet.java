@@ -25,14 +25,10 @@ public class QuestionPaperServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter pw=null;
-		int sub_id=0;
 		HttpSession ses=req.getSession(true);
 		pw=res.getWriter();
-		String subject=req.getParameter("subject");
-		if(subject.equals("C"))
-			sub_id=1;
-		else
-			sub_id=2;
+		int sub_id=Integer.parseInt(req.getParameter("id"));
+		
 		paperDaoImpl paper=null;
 		ses.setAttribute("subject_id", sub_id);
 		List<Questionbean> listbean=null;

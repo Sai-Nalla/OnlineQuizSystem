@@ -10,30 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.nt.bean.StudentBean;
-import com.nt.dao.UpdateStudentDao;
+import com.nt.dao.getStudentDao;
 
-@WebServlet("/UpdateStudenturl")
-public class UpdateStudentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
+
+@WebServlet("/getStudenturl")
+public class getStudentServlet extends HttpServlet {
+
+    
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		UpdateStudentDao dao=new UpdateStudentDao();
-		StudentBean bean=new StudentBean();
-		int result=0;
-		bean.setStudent_id(Integer.parseInt(req.getParameter("stu_id")));
-		bean.setStudentName(req.getParameter("sname"));
-		bean.setAddres(req.getParameter("addrs"));
+		getStudentDao studao=new getStudentDao();
+		StudentBean bean=null;
+		int stu_id=Integer.parseInt(req.getParameter("id"));
 		try {
-			result=dao.UpdateStudents(bean);
-			System.out.println(result);
-			if(result==1) {
-				RequestDispatcher rd=req.getRequestDispatcher("/StuDetails");
+			bean=studao.getStudents(stu_id);
+			req.setAttribute("student", bean);
+			RequestDispatcher rd=req.getRequestDispatcher("/UpdateStudent.jsp");
 			rd.forward(req, res);
-			}
-			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
+		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

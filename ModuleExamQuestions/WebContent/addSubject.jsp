@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%RequestDispatcher rd=request.getRequestDispatcher("/home.jsp");
+		rd.include(request, response);%>
+    
    <h1 style="color:red"> ${result}</h1>
    <br>
    <form action="addsubjecturl" method="POST">

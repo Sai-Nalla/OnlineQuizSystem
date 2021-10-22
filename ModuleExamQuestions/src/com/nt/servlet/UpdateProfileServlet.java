@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.nt.bean.StudentBean;
 import com.nt.dao.UpdateStudentDao;
 
-@WebServlet("/UpdateStudenturl")
-public class UpdateStudentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
+
+@WebServlet("/UpdateProfileurl")
+public class UpdateProfileServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		UpdateStudentDao dao=new UpdateStudentDao();
 		StudentBean bean=new StudentBean();
@@ -27,7 +26,7 @@ public class UpdateStudentServlet extends HttpServlet {
 			result=dao.UpdateStudents(bean);
 			System.out.println(result);
 			if(result==1) {
-				RequestDispatcher rd=req.getRequestDispatcher("/StuDetails");
+				RequestDispatcher rd=req.getRequestDispatcher("/StudentPanel.jsp");
 			rd.forward(req, res);
 			}
 			
@@ -36,6 +35,9 @@ public class UpdateStudentServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 	if(flag&&username.equals("Admin")) 
 		resp.sendRedirect("Admin.jsp");
 		else  if(flag)
-			resp.sendRedirect("Students.jsp");
+			resp.sendRedirect("StudentPanel.jsp");
 		else{
 			resp.sendRedirect("Login.jsp");
 		}
